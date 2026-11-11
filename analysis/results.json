@@ -1,0 +1,260 @@
+{
+  "task4": {
+    "A_A": 0.9982174688057041,
+    "A_B": 0.9962640099626401,
+    "A_C": 0.993,
+    "downtime_A_h": 15.614973262032471,
+    "downtime_B_h": 32.72727272727286,
+    "downtime_C_h": 61.32000000000006,
+    "A_A_dup": 0.9999968225825414,
+    "A_B_dup": 0.9999860423784408,
+    "system_serial": 0.9875267213191175,
+    "downtime_serial_h": 109.26592124453113,
+    "system_dup": 0.992982984950294,
+    "downtime_dup_h": 61.46905183542436
+  },
+  "task5": {
+    "lef": 5.0,
+    "lm": 30.0,
+    "lm_after": 3.3333333333333335,
+    "ale_before": 150.0,
+    "ale_after": 16.666666666666668,
+    "cost": 86,
+    "rosi": 0.5503875968992249,
+    "lef_break_even": 3.2249999999999996
+  },
+  "task6": {
+    "pofod": 0.0002037037037037037,
+    "rocof_per_h": 0.002777777777777778,
+    "mean_days_between_failures": 15.0,
+    "avail": 0.9838888888888888
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "name": "Loss of link with dispatcher (LTE)",
+      "p": 4,
+      "i": 5,
+      "score": 20,
+      "zone": "critical",
+      "strategy": "Address"
+    },
+    {
+      "id": "R2",
+      "name": "Dispatcher server failure (A)",
+      "p": 3,
+      "i": 5,
+      "score": 15,
+      "zone": "critical",
+      "strategy": "Address"
+    },
+    {
+      "id": "R3",
+      "name": "Flight plan DB failure (B)",
+      "p": 2,
+      "i": 4,
+      "score": 8,
+      "zone": "high/medium",
+      "strategy": "Address"
+    },
+    {
+      "id": "R4",
+      "name": "GPS spoofing / jamming",
+      "p": 2,
+      "i": 5,
+      "score": 10,
+      "zone": "high/medium",
+      "strategy": "Address + Transfer"
+    },
+    {
+      "id": "R5",
+      "name": "Wrong flight plan (over people / no-fly zone)",
+      "p": 2,
+      "i": 5,
+      "score": 10,
+      "zone": "high/medium",
+      "strategy": "Address"
+    },
+    {
+      "id": "R6",
+      "name": "Command link compromise (spoofed commands)",
+      "p": 2,
+      "i": 5,
+      "score": 10,
+      "zone": "high/medium",
+      "strategy": "Address"
+    },
+    {
+      "id": "R7",
+      "name": "Dangerous weather (wind, icing)",
+      "p": 3,
+      "i": 3,
+      "score": 9,
+      "zone": "high/medium",
+      "strategy": "Avoid"
+    },
+    {
+      "id": "R8",
+      "name": "External weather service outage",
+      "p": 2,
+      "i": 2,
+      "score": 4,
+      "zone": "low",
+      "strategy": "Accept"
+    }
+  ],
+  "stand": {
+    "k8s_off": {
+      "total": 2400,
+      "failed": 567,
+      "pofod": 0.23625,
+      "episodes": 1,
+      "duration_s": 120,
+      "rocof_per_h": 30.0,
+      "avail": 0.775,
+      "p50_ms": 7.4,
+      "p95_ms": 10.5,
+      "p99_ms": 28.7
+    },
+    "k8s_on": {
+      "total": 2400,
+      "failed": 0,
+      "pofod": 0.0,
+      "episodes": 0,
+      "duration_s": 120,
+      "rocof_per_h": 0.0,
+      "avail": 1.0,
+      "p50_ms": 4.2,
+      "p95_ms": 8.7,
+      "p99_ms": 15.6
+    },
+    "off": {
+      "total": 2400,
+      "failed": 600,
+      "pofod": 0.25,
+      "episodes": 1,
+      "duration_s": 120,
+      "rocof_per_h": 30.0,
+      "avail": 0.7583333333333333,
+      "p50_ms": 23.2,
+      "p95_ms": 41.2,
+      "p99_ms": 43.4,
+      "name": "off",
+      "mode": "off",
+      "fault": "{\"unavailable\": true}",
+      "env": [],
+      "source": "local run"
+    },
+    "on": {
+      "total": 2400,
+      "failed": 0,
+      "pofod": 0.0,
+      "episodes": 0,
+      "duration_s": 120,
+      "rocof_per_h": 0.0,
+      "avail": 1.0,
+      "p50_ms": 12.2,
+      "p95_ms": 27.0,
+      "p99_ms": 34.7,
+      "name": "on",
+      "mode": "on",
+      "fault": "{\"unavailable\": true}",
+      "env": [],
+      "source": "local run"
+    },
+    "on_delay2000": {
+      "total": 2400,
+      "failed": 0,
+      "pofod": 0.0,
+      "episodes": 0,
+      "duration_s": 120,
+      "rocof_per_h": 0.0,
+      "avail": 1.0,
+      "p50_ms": 6.1,
+      "p95_ms": 26.9,
+      "p99_ms": 315.2,
+      "name": "on_delay2000",
+      "mode": "on",
+      "fault": "{\"delay_ms\": 2000}",
+      "env": [],
+      "source": "local run"
+    },
+    "on_maxage10": {
+      "total": 2400,
+      "failed": 420,
+      "pofod": 0.175,
+      "episodes": 1,
+      "duration_s": 120,
+      "rocof_per_h": 30.0,
+      "avail": 0.8333333333333334,
+      "p50_ms": 14.0,
+      "p95_ms": 27.0,
+      "p99_ms": 34.3,
+      "name": "on_maxage10",
+      "mode": "on",
+      "fault": "{\"unavailable\": true}",
+      "env": [
+        "PLAN_MAX_AGE_S=10"
+      ],
+      "source": "local run"
+    },
+    "on_maxage120": {
+      "total": 2400,
+      "failed": 0,
+      "pofod": 0.0,
+      "episodes": 0,
+      "duration_s": 120,
+      "rocof_per_h": 0.0,
+      "avail": 1.0,
+      "p50_ms": 6.2,
+      "p95_ms": 27.3,
+      "p99_ms": 38.8,
+      "name": "on_maxage120",
+      "mode": "on",
+      "fault": "{\"unavailable\": true}",
+      "env": [
+        "PLAN_MAX_AGE_S=120"
+      ],
+      "source": "local run"
+    }
+  },
+  "given": {
+    "A": {
+      "name": "Flight Control API (dispatcher server)",
+      "mtbf_h": 1680,
+      "mttr_h": 3
+    },
+    "B": {
+      "name": "Flight plan & telemetry DB",
+      "mtbf_h": 1600,
+      "mttr_h": 6
+    },
+    "C": {
+      "name": "LTE link of mobile operator (external)",
+      "sla": 0.993
+    },
+    "trial": {
+      "hours": 720,
+      "requests": 54000,
+      "failed_requests": 11,
+      "service_failures": 2,
+      "downtime_h": 11.6
+    },
+    "lef": [
+      3,
+      4,
+      11
+    ],
+    "lm": [
+      10,
+      26,
+      66
+    ],
+    "lm_after": [
+      1.1,
+      2.9,
+      7.3
+    ],
+    "control_cost": 86
+  }
+}

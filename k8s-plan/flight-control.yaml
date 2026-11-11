@@ -1,0 +1,75 @@
+# Task 7: production plan for the ground dispatcher system (Flight Control API).
+# Check:  kubectl apply --dry-run=server -f k8s-plan/flight-control.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight-control-api
+  labels: {app: flight-control-api}
+spec:
+  replicas: 4                                  # 2 per zone: losing a zone leaves 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: {maxSurge: 1, maxUnavailable: 0}   # bad release never removes old pods
+  selector:
+    matchLabels: {app: flight-control-api}
+  template:
+    metadata:
+      labels: {app: flight-control-api}
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels: {app: flight-control-api}
+      containers:
+        - name: api
+          image: python:3.12-slim
+          command: ["python", "/code/core.py"]
+          env:
+            - {name: PATTERN, value: "on"}
+            - {name: PLAN_MAX_AGE_S, value: "60"}       # = RTO of flight control
+            - {name: DEP_TIMEOUT_ON_S, value: "0.3"}
+          ports: [{containerPort: 8080}]
+          resources:
+            requests: {cpu: 250m, memory: 128Mi}
+            limits: {cpu: "1", memory: 256Mi}
+          readinessProbe:                       # own process only, NOT dep-a / LTE
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 2
+            failureThreshold: 2
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 10
+            failureThreshold: 3
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: flight-control-api
+spec:
+  minAvailable: 3                              # node maintenance never drops below 3
+  selector:
+    matchLabels: {app: flight-control-api}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flight-control-api
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: flight-control-api}
+  minReplicas: 4
+  maxReplicas: 12
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 70}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight-control-api
+spec:
+  selector: {app: flight-control-api}
+  ports: [{port: 80, targetPort: 8080}]
