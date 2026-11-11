@@ -1,0 +1,12 @@
+[pod/core-56c4bb6d74-j89x9/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=on
+[pod/core-56c4bb6d74-j89x9/core] [core] dep-a OK -> plan v478 loaded
+[pod/core-56c4bb6d74-j89x9/core] [core] dep-a lost (HTTPError) -> flying on plan v490 from memory
+[pod/core-56c4bb6d74-j89x9/core] [core] dep-a OK -> plan v493 loaded
+[pod/core-56c4bb6d74-qh8rl/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=on
+[pod/core-56c4bb6d74-qh8rl/core] [core] dep-a OK -> plan v477 loaded
+[pod/core-56c4bb6d74-qh8rl/core] [core] dep-a lost (HTTPError) -> flying on plan v490 from memory
+[pod/core-56c4bb6d74-qh8rl/core] [core] dep-a OK -> plan v493 loaded
+[pod/core-56c4bb6d74-j2mmb/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=on
+[pod/core-56c4bb6d74-j2mmb/core] [core] dep-a OK -> plan v477 loaded
+[pod/core-56c4bb6d74-j2mmb/core] [core] dep-a lost (HTTPError) -> flying on plan v490 from memory
+[pod/core-56c4bb6d74-j2mmb/core] [core] dep-a OK -> plan v493 loaded

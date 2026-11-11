@@ -1,0 +1,14 @@
+[pod/core-577cbc97f9-hkcqs/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=off
+[pod/core-577cbc97f9-hkcqs/core] [core] dep-a OK -> plan v464 loaded
+[pod/core-577cbc97f9-hkcqs/core] [core] dep-a lost (HTTPError) -> flying on plan v467 from memory
+[pod/core-577cbc97f9-hkcqs/core] [core] dep-a OK -> plan v470 loaded
+[pod/core-577cbc97f9-k4vvx/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=off
+[pod/core-577cbc97f9-k4vvx/core] [core] plan too old (104s > 60s) -> FAILSAFE: land_or_return_home
+[pod/core-577cbc97f9-k4vvx/core] [core] dep-a OK -> plan v464 loaded
+[pod/core-577cbc97f9-k4vvx/core] [core] dep-a lost (HTTPError) -> flying on plan v467 from memory
+[pod/core-577cbc97f9-k4vvx/core] [core] dep-a OK -> plan v470 loaded
+[pod/core-577cbc97f9-vkwn9/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0  BACKGROUND_REFRESH=off
+[pod/core-577cbc97f9-vkwn9/core] [core] plan too old (100s > 60s) -> FAILSAFE: land_or_return_home[core] dep-a OK -> plan v464 loaded
+[pod/core-577cbc97f9-vkwn9/core] 
+[pod/core-577cbc97f9-vkwn9/core] [core] dep-a lost (HTTPError) -> flying on plan v467 from memory
+[pod/core-577cbc97f9-vkwn9/core] [core] dep-a OK -> plan v470 loaded

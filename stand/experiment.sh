@@ -22,11 +22,16 @@ headers={'Content-Type': 'application/json'})).read()" >/dev/null
 
 log "mode PATTERN=$MODE, FAULT=$FAULT ${EXTRA_ENV}"
 set_fault '{}'
-kubectl set env deployment/core PATTERN="$MODE" PLAN_MAX_AGE_S- >/dev/null
+kubectl set env deployment/core PATTERN="$MODE" PLAN_MAX_AGE_S- BACKGROUND_REFRESH- >/dev/null
 if [ -n "$EXTRA_ENV" ]; then kubectl set env deployment/core $EXTRA_ENV >/dev/null; fi
 kubectl rollout status deployment/core --timeout=180s >/dev/null
 log "core rolled out with PATTERN=$MODE"
 kubectl get pods -l app=core | grep -v Terminating || true
+IDLE_S="${IDLE_S:-0}"                               # e.g. IDLE_S=75: core waits without requests
+if [ "$IDLE_S" -gt 0 ]; then
+  log "core idle for ${IDLE_S}s (no requests) - plan in memory gets older than PLAN_MAX_AGE_S=60"
+  sleep "$IDLE_S"
+fi
 
 kubectl delete job loadgen --ignore-not-found >/dev/null
 # use the cluster clock (it can differ from this machine, e.g. Docker Desktop VM)

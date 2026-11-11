@@ -1,0 +1,12 @@
+{
+  "total": 2400,
+  "failed": 2,
+  "pofod": 0.0008333333333333334,
+  "episodes": 1,
+  "duration_s": 120,
+  "rocof_per_h": 30.0,
+  "avail": 1.0,
+  "p50_ms": 3.9,
+  "p95_ms": 9.7,
+  "p99_ms": 19.1
+}

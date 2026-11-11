@@ -146,11 +146,14 @@ def background_refresh():
         time.sleep(PLAN_REFRESH_S)
 
 
+BACKGROUND_REFRESH = os.environ.get("BACKGROUND_REFRESH", "on") == "on"   # off = behaviour before the fix
+
 if __name__ == "__main__":
-    if PATTERN:
+    if PATTERN and BACKGROUND_REFRESH:
         threading.Thread(target=background_refresh, daemon=True).start()
     server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
     server.daemon_threads = True
     print(f"[core] flight control on :{PORT}  PATTERN={'on' if PATTERN else 'off'}  "
-          f"PLAN_MAX_AGE_S={PLAN_MAX_AGE_S}", flush=True)
+          f"PLAN_MAX_AGE_S={PLAN_MAX_AGE_S}  BACKGROUND_REFRESH={'on' if BACKGROUND_REFRESH else 'off'}",
+          flush=True)
     server.serve_forever()
