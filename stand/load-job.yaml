@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: loadgen
+          image: python:3.12-slim
+          command: ["python", "/code/loadgen.py"]   # CSV -> stdout -> kubectl logs
+          env:
+            - {name: URL, value: "http://core/"}
+            - {name: DURATION_S, value: "120"}
+            - {name: START_AT, value: "0"}          # experiment.sh sets the start time
+            - {name: PYTHONUNBUFFERED, value: "1"}
+          volumeMounts: [{name: code, mountPath: /code}]
+      volumes:
+        - name: code
+          configMap: {name: code}

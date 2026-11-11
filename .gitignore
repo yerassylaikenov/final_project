@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+~$*
+.vscode/
+*.pptx
+prompt_claude_code_variant5.md

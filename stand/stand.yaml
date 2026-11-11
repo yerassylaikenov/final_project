@@ -1,0 +1,78 @@
+# Stand for variant 5. Code comes from ConfigMap "code":
+#   kubectl create configmap code --from-file=dep.py --from-file=core.py --from-file=loadgen.py
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: dep-a}
+  template:
+    metadata:
+      labels: {app: dep-a}
+    spec:
+      containers:
+        - name: dep-a
+          image: python:3.12-slim
+          command: ["python", "/code/dep.py"]
+          env:
+            - {name: PORT, value: "8081"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+          ports: [{containerPort: 8081}]
+          readinessProbe:
+            httpGet: {path: /healthz, port: 8081}
+            periodSeconds: 2
+          volumeMounts: [{name: code, mountPath: /code}]
+      volumes:
+        - name: code
+          configMap: {name: code}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dep-a
+spec:
+  selector: {app: dep-a}
+  ports: [{port: 80, targetPort: 8081}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  replicas: 3                     # R=3
+  selector:
+    matchLabels: {app: core}
+  template:
+    metadata:
+      labels: {app: core}
+    spec:
+      containers:
+        - name: core
+          image: python:3.12-slim
+          command: ["python", "/code/core.py"]
+          env:
+            - {name: PORT, value: "8080"}
+            - {name: PATTERN, value: "off"}
+            - {name: DEP_URL, value: "http://dep-a/"}
+            - {name: PYTHONUNBUFFERED, value: "1"}
+          ports: [{containerPort: 8080}]
+          readinessProbe:             # only /healthz - never checks dep-a
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 2
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            periodSeconds: 10
+          volumeMounts: [{name: code, mountPath: /code}]
+      volumes:
+        - name: code
+          configMap: {name: code}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core
+spec:
+  selector: {app: core}
+  ports: [{port: 80, targetPort: 8080}]
