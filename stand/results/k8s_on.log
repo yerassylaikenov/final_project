@@ -1,0 +1,12 @@
+[pod/core-5576f4cd4f-hzbbn/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0
+[pod/core-5576f4cd4f-hzbbn/core] [core] dep-a OK -> plan v145 loaded
+[pod/core-5576f4cd4f-hzbbn/core] [core] dep-a lost (HTTPError) -> flying on plan v148 from memory
+[pod/core-5576f4cd4f-hzbbn/core] [core] dep-a OK -> plan v151 loaded
+[pod/core-5576f4cd4f-4d2n8/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0
+[pod/core-5576f4cd4f-4d2n8/core] [core] dep-a OK -> plan v145 loaded
+[pod/core-5576f4cd4f-4d2n8/core] [core] dep-a lost (HTTPError) -> flying on plan v148 from memory
+[pod/core-5576f4cd4f-4d2n8/core] [core] dep-a OK -> plan v151 loaded
+[pod/core-5576f4cd4f-7ftq7/core] [core] flight control on :8080  PATTERN=on  PLAN_MAX_AGE_S=60.0
+[pod/core-5576f4cd4f-7ftq7/core] [core] dep-a OK -> plan v145 loaded
+[pod/core-5576f4cd4f-7ftq7/core] [core] dep-a lost (HTTPError) -> flying on plan v148 from memory
+[pod/core-5576f4cd4f-7ftq7/core] [core] dep-a OK -> plan v151 loaded

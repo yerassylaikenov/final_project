@@ -1,0 +1,3 @@
+[pod/core-7846b4bcdf-27ggf/core] [core] flight control on :8080  PATTERN=off  PLAN_MAX_AGE_S=60.0
+[pod/core-7846b4bcdf-7cs2n/core] [core] flight control on :8080  PATTERN=off  PLAN_MAX_AGE_S=60.0
+[pod/core-7846b4bcdf-hmr6w/core] [core] flight control on :8080  PATTERN=off  PLAN_MAX_AGE_S=60.0

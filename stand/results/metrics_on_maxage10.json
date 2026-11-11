@@ -1,0 +1,19 @@
+{
+  "total": 2400,
+  "failed": 420,
+  "pofod": 0.175,
+  "episodes": 1,
+  "duration_s": 120,
+  "rocof_per_h": 30.0,
+  "avail": 0.8333333333333334,
+  "p50_ms": 14.0,
+  "p95_ms": 27.0,
+  "p99_ms": 34.3,
+  "name": "on_maxage10",
+  "mode": "on",
+  "fault": "{\"unavailable\": true}",
+  "env": [
+    "PLAN_MAX_AGE_S=10"
+  ],
+  "source": "local run"
+}

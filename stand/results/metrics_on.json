@@ -1,0 +1,17 @@
+{
+  "total": 2400,
+  "failed": 0,
+  "pofod": 0.0,
+  "episodes": 0,
+  "duration_s": 120,
+  "rocof_per_h": 0.0,
+  "avail": 1.0,
+  "p50_ms": 12.2,
+  "p95_ms": 27.0,
+  "p99_ms": 34.7,
+  "name": "on",
+  "mode": "on",
+  "fault": "{\"unavailable\": true}",
+  "env": [],
+  "source": "local run"
+}

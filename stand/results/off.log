@@ -1,0 +1,33 @@
+[run 19:28:00] experiment 'off': PATTERN=off FAULT={"unavailable": true} timeline 0/30/60/120 s 
+[dep-a] dispatcher listening on :18081
+[core] flight control on :18080  PATTERN=off  PLAN_MAX_AGE_S=60.0
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 51137)
+Traceback (most recent call last):
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\http\server.py", line 436, in handle
+    self.handle_one_request()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\http\server.py", line 404, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\yeras\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+----------------------------------------
+[run 19:28:01] dep-a and core are up, starting loadgen (20 rps, client timeout 1.5 s)
+[dep-a] fault set: {'unavailable': True}
+[run 19:28:31] t=30s  dep-a BROKEN: {"unavailable": true}
+[dep-a] fault set: none (repaired)
+[run 19:29:01] t=60s  dep-a REPAIRED
+[run 19:30:02] RESULT POFOD=0.2500  episodes=1  ROCOF=30.0/h  AVAIL=0.7583  p50/p95/p99=23/41/43 ms  total=2400
+[run 19:30:02] saved: results/off.csv, results/off.log, results/metrics_off.json

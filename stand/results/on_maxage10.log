@@ -1,0 +1,14 @@
+[run 19:32:35] experiment 'on_maxage10': PATTERN=on FAULT={"unavailable": true} timeline 0/30/60/120 s PLAN_MAX_AGE_S=10
+[dep-a] dispatcher listening on :18081
+[core] flight control on :18080  PATTERN=on  PLAN_MAX_AGE_S=10.0
+[run 19:32:36] dep-a and core are up, starting loadgen (20 rps, client timeout 1.5 s)
+[core] dep-a OK -> plan v1 loaded
+[dep-a] fault set: {'unavailable': True}
+[run 19:33:06] t=30s  dep-a BROKEN: {"unavailable": true}
+[core] dep-a lost (HTTPError) -> flying on plan v3 from memory
+[core] plan too old (10s > 10s) -> FAILSAFE: land_or_return_home
+[dep-a] fault set: none (repaired)
+[run 19:33:36] t=60s  dep-a REPAIRED
+[core] dep-a OK -> plan v7 loaded
+[run 19:34:36] RESULT POFOD=0.1750  episodes=1  ROCOF=30.0/h  AVAIL=0.8333  p50/p95/p99=14/27/34 ms  total=2400
+[run 19:34:36] saved: results/on_maxage10.csv, results/on_maxage10.log, results/metrics_on_maxage10.json

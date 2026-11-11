@@ -1,0 +1,13 @@
+[run 19:30:07] experiment 'on': PATTERN=on FAULT={"unavailable": true} timeline 0/30/60/120 s 
+[dep-a] dispatcher listening on :18081
+[core] flight control on :18080  PATTERN=on  PLAN_MAX_AGE_S=60.0
+[run 19:30:07] dep-a and core are up, starting loadgen (20 rps, client timeout 1.5 s)
+[core] dep-a OK -> plan v1 loaded
+[dep-a] fault set: {'unavailable': True}
+[run 19:30:37] t=30s  dep-a BROKEN: {"unavailable": true}
+[core] dep-a lost (HTTPError) -> flying on plan v3 from memory
+[dep-a] fault set: none (repaired)
+[run 19:31:07] t=60s  dep-a REPAIRED
+[core] dep-a OK -> plan v7 loaded
+[run 19:32:08] RESULT POFOD=0.0000  episodes=0  ROCOF=0.0/h  AVAIL=1.0000  p50/p95/p99=12/27/35 ms  total=2400
+[run 19:32:08] saved: results/on.csv, results/on.log, results/metrics_on.json

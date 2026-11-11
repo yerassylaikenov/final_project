@@ -1,0 +1,17 @@
+{
+  "total": 2400,
+  "failed": 0,
+  "pofod": 0.0,
+  "episodes": 0,
+  "duration_s": 120,
+  "rocof_per_h": 0.0,
+  "avail": 1.0,
+  "p50_ms": 6.1,
+  "p95_ms": 26.9,
+  "p99_ms": 315.2,
+  "name": "on_delay2000",
+  "mode": "on",
+  "fault": "{\"delay_ms\": 2000}",
+  "env": [],
+  "source": "local run"
+}

@@ -1,0 +1,11 @@
+[experiment 19:25:00] mode PATTERN=on, FAULT={"unavailable": true} 
+[experiment 19:25:07] core rolled out with PATTERN=on
+NAME                    READY   STATUS        RESTARTS   AGE
+core-5576f4cd4f-4d2n8   1/1     Running       0          6s
+core-5576f4cd4f-7ftq7   1/1     Running       0          2s
+core-5576f4cd4f-hzbbn   1/1     Running       0          4s
+[experiment 19:25:28] t=0s   loadgen started (20 rps, client timeout 1.5 s)
+[experiment 19:25:58] t=30s  dep-a BROKEN: {"unavailable": true}
+[experiment 19:26:28] t=60s  dep-a REPAIRED
+[experiment 19:27:32] t=120s loadgen finished, saved results/k8s_on.csv
+POFOD=0.0000  episodes=0  ROCOF=0.0/h  AVAIL=1.0000  p50/p95/p99=4/9/16 ms  total=2400
