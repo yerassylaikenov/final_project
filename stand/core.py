@@ -139,7 +139,16 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
 
+def background_refresh():
+    """Keep the plan fresh even when no requests come (idle drone on the pad)."""
+    while True:
+        refresh_plan()
+        time.sleep(PLAN_REFRESH_S)
+
+
 if __name__ == "__main__":
+    if PATTERN:
+        threading.Thread(target=background_refresh, daemon=True).start()
     server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
     server.daemon_threads = True
     print(f"[core] flight control on :{PORT}  PATTERN={'on' if PATTERN else 'off'}  "
